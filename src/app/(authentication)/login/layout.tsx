@@ -1,8 +1,8 @@
-import LayoutDefault from "@/app/layouts/layout-default";
+import LayoutSignIn from "@/app/layouts/layout-signin";
 
 const LoginLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
     return (
-        <LayoutDefault children = {children} />
+        <LayoutSignIn children={ children } />
     );
 }
 
