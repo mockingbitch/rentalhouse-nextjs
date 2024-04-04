@@ -1,13 +1,12 @@
-import HeaderSignIn from "@/components/header/header-signin";
+import Header from "@/components/header/header";
+import Footer from "@/components/footer/footer";
 
 const LayoutSignIn = ({children}: Readonly<{children: React.ReactNode;}>) => {
     return (
         <>
-            <HeaderSignIn />
-                <main>
-                    { children }
-                </main>
-            {/* <Footer/> */}
+            <Header />
+                { children }
+            <Footer/>
         </>
     );
 }
