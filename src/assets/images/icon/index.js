@@ -1,0 +1,10 @@
+export { default as email } from "./email.svg";
+export { default as eye } from "./eye.svg";
+export { default as facebook } from "./facebook.svg";
+export { default as github } from "./github.svg";
+export { default as google } from "./google.svg";
+export { default as hamburger } from "./hamburger.svg";
+export { default as light } from "./light.svg";
+export { default as logo } from "./logo.svg";
+export { default as night } from "./night.svg";
+export { default as twitter } from "./twitter.svg";

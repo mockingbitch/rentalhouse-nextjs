@@ -1,7 +1,7 @@
 import LayoutSignIn from "@/app/layouts/layout-signin";
 import React from "react";
 
-const LoginLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
+const RegisterLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
     return (
         <LayoutSignIn>
             {children}
@@ -9,4 +9,4 @@ const LoginLayout = ({children}: Readonly<{children: React.ReactNode;}>) => {
     );
 }
 
-export default LoginLayout;
+export default RegisterLayout;
