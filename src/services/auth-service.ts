@@ -1,26 +1,25 @@
-import { LoginResponse } from '@/app/(authentication)/login/login';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import axios from "axios";
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: process.env.API_DOMAIN
-  }),
-  endpoints: (builder) => ({
-    login: builder.mutation<LoginResponse, void>({
-      query: () => 'login',
-    }),
-    getAuthData: builder.query<LoginResponse, { token: string }>({
-      query: ({ token }) => ({
-        url: 'profile',
-        // this is the default but I'm leaving it here for reference
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }),
-    }),
-  }),
-});
+let API_URL: string | undefined = 'http://localhost:81/api/';
+console.log(API_URL);
 
-export const { useLoginMutation, useGetAuthDataQuery } = authApi;
+const LoginService = async ({email, password}: {email?: string, password?: string}) => {
+    return await axios
+        .post(API_URL + "login", {
+            email,
+            password
+        })
+        .then(response => {
+            console.log(response);
+            return response
+        })
+}
+
+const LogoutService = (token: string) => {
+    return axios.get(API_URL + "logout", { headers: {"Authorization" : `Bearer ${token}`} }).then(response => response.data)
+}
+
+export {
+    LoginService,
+    LogoutService,
+}

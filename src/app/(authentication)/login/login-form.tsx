@@ -7,21 +7,19 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import { emailIcon, eyeIcon, googleIcon, facebookIcon } from "@/assets/images/icon";
-import { useLoginMutation } from '@/services/auth-service';
+// import { useLoginMutation } from '@/services/auth-service';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store';
-
-interface UserAuth {
-    email: string;
-    password: string;
-}
+import { AppDispatch, RootState } from '@/store';
+import { login } from "@/store/slices/auth-slice";
+import { UserAuth } from "@/interfaces/user-interface";
 
 const LoginForm = () => {
-    const dispatch = useDispatch();
-    const [signIn, { isLoading }] = useLoginMutation();
-    const { email } = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch<AppDispatch>();
+    const auth = useSelector((state: RootState) => state.auth);
     const [data, setData] = useState<UserAuth>();
 
+    console.log(auth);
+    
     const handleOnChange = (event: any) => {
         const targetName = event.target.name;
         const targetValue = event.target.value;
@@ -30,7 +28,9 @@ const LoginForm = () => {
 
     const handleLogin = async () => {
         try {
-            await signIn().unwrap();
+            // await signIn().unwrap();
+            const action = login(data!);
+            dispatch(action);
         } catch (e: unknown) {
             if (e instanceof Error) {
                 console.log(e.message);

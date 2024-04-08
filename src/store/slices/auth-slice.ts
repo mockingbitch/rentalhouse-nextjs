@@ -1,6 +1,5 @@
-import { LoginResponse } from '@/app/(authentication)/login/login';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { authApi } from '@/services/auth-service';
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { LoginService } from '@/services/auth-service';
 import {
     AUTH_REFRESH_TOKEN,
     AUTH_TOKEN,
@@ -9,8 +8,20 @@ import {
     removeCookies,
     setAuthCookie,
 } from '@/lib/cookies';
+import { AuthState } from '@/interfaces/user-interface';
 
-const initialState: Partial<LoginResponse> = {};
+type AuthSliceState = { token?: string | undefined, isLoggedIn : boolean, isLoading? : boolean, refreshToken: string | undefined}
+
+const initialState: Partial<AuthSliceState> = {};
+
+export const login = createAsyncThunk(
+    "auth/login",
+    async ({email, password}: {email?: string, password?: string}) => {
+        let response = await LoginService({email, password});
+
+        return response;
+    }
+)
 
 const slice = createSlice({
     name: 'auth',
@@ -32,24 +43,32 @@ const slice = createSlice({
     },
     extraReducers: (builder) => {
     builder
-        .addMatcher(
-        authApi.endpoints.login.matchFulfilled,
-        (_state, { payload }) => {
-            // set the token and refreshToken
-            console.log(_state);
-            console.log(payload);
-            setAuthCookie(payload.token, AUTH_TOKEN);
-            setAuthCookie(payload.refreshToken, AUTH_REFRESH_TOKEN);
-
-            return payload;
+        .addCase(login.pending, (state) => {
+            state.isLoading = true;
+            console.log('pending');
         })
-        .addMatcher(
-        authApi.endpoints.getAuthData.matchFulfilled,
-        (_state, { payload }) => {
-            setAuthCookie(payload.token, AUTH_TOKEN);
-            setAuthCookie(payload.refreshToken, AUTH_REFRESH_TOKEN);
-            return payload;
-        });
+        .addCase(login.fulfilled, (state, { payload }) => {
+            // state.user = action.payload ;
+            // state.isLoading = false;
+            // // set the token and refreshToken
+            // setAuthCookie(payload.token, AUTH_TOKEN);
+            // setAuthCookie(payload.refreshToken, AUTH_REFRESH_TOKEN);
+
+            // return payload;
+        })
+        .addCase(login.rejected, (state, { payload }) => {
+            console.log('rejected');
+            // state.error = action.error;
+            // state.isLoggedIn = false;
+        })
+        // .addMatcher(
+        // authApi.endpoints.getAuthData.matchFulfilled,
+        // (_state, { payload }) => {
+        //     setAuthCookie(payload.token, AUTH_TOKEN);
+        //     setAuthCookie(payload.refreshToken, AUTH_REFRESH_TOKEN);
+
+        //     return payload;
+        // });
     },
 });
 
