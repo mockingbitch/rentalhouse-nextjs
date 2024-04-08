@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { email, eye, google, facebook } from "@/assets/images/icon";
+import { emailIcon, eyeIcon, googleIcon, facebookIcon } from "@/assets/images/icon";
 
 const RegisterForm = () => {
     return (
@@ -29,7 +29,7 @@ const RegisterForm = () => {
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Enter email"
                     />
-                    <Image src={email} className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
+                    <Image src={ emailIcon } className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
                 </div>
             </div>
             <div className="mt-8">
@@ -41,7 +41,7 @@ const RegisterForm = () => {
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Enter password"
                     />
-                    <Image src={eye} className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
+                    <Image src={ eyeIcon } className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
                 </div>
             </div>
             <div className="mt-8">
@@ -53,7 +53,7 @@ const RegisterForm = () => {
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Confirm password"
                     />
-                    <Image src={eye} className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
+                    <Image src={ eyeIcon } className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
                 </div>
             </div>
             <div className="mt-12">
@@ -69,10 +69,10 @@ const RegisterForm = () => {
             </p>
             <div className="space-x-8 flex justify-center">
                 <span>
-                    <Image src={google} className="inline cursor-pointer" alt="Google icon"/>
+                    <Image src={ googleIcon } className="inline cursor-pointer" alt="Google icon"/>
                 </span>
                 <span>
-                    <Image src={facebook} className="cursor-pointer" alt="Facebook icon"/>
+                    <Image src={ facebookIcon } className="cursor-pointer" alt="Facebook icon"/>
                 </span>
             </div>
         </form>

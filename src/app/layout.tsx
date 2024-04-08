@@ -4,6 +4,8 @@ import "./globals.css";
 import React from "react";
 import {clsx} from "clsx";
 import {ThemeProvider} from "@/components/theme/theme-provider";
+import { Provider } from 'react-redux';
+import { store } from '@/store';
 
 const roboto = Noto_Sans({ subsets: ["vietnamese"], weight: ['100', '300']});
 
@@ -14,17 +16,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode; }>) {
 	return (
-		<html lang="en">
-		<body className={clsx('min-h-screen', roboto.className)}>
-			<ThemeProvider
-				attribute="class"
-				defaultTheme="system"
-				enableSystem
-				disableTransitionOnChange
-			>
-				{children}
-			</ThemeProvider>
-		</body>
-		</html>
+		// <Provider store={ store }>
+			<html lang="vi">
+				<body className={ clsx('min-h-screen', roboto.className) }>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						{ children }
+					</ThemeProvider>
+				</body>
+			</html>
+		// </Provider>
 	);
 }

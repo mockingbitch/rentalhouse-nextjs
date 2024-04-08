@@ -1,11 +1,15 @@
 'use client'
+
 import { useState, useCallback } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
-import { email, eye, google, facebook } from "@/assets/images/icon";
+import { emailIcon, eyeIcon, googleIcon, facebookIcon } from "@/assets/images/icon";
+import { useLoginMutation } from '@/services/auth-service';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store';
 
 interface UserAuth {
     email: string;
@@ -13,6 +17,9 @@ interface UserAuth {
 }
 
 const LoginForm = () => {
+    const dispatch = useDispatch();
+    const [signIn, { isLoading }] = useLoginMutation();
+    const { email } = useSelector((state: RootState) => state.auth);
     const [data, setData] = useState<UserAuth>();
 
     const handleOnChange = (event: any) => {
@@ -20,6 +27,16 @@ const LoginForm = () => {
         const targetValue = event.target.value;
         setData((values: any) => ({ ...values, [targetName]: targetValue }));
     }
+
+    const handleLogin = async () => {
+        try {
+            await signIn().unwrap();
+        } catch (e: unknown) {
+            if (e instanceof Error) {
+                console.log(e.message);
+            }
+        }
+    };
 
     return (
         <form>
@@ -43,8 +60,9 @@ const LoginForm = () => {
                         type="text"
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Enter email"
+                        onChange={ e => handleOnChange(e) }
                     />
-                    <Image src={email} className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
+                    <Image src={ emailIcon } className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
                 </div>
             </div>
             <div className="mt-8">
@@ -55,8 +73,9 @@ const LoginForm = () => {
                         type="password"
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Enter password"
+                        onChange={ e => handleOnChange(e) }
                     />
-                    <Image src={eye} className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
+                    <Image src={ eyeIcon } className="w-[18px] h-[18px] absolute right-2 cursor-pointer" alt="Eye icon"/>
                 </div>
             </div>
             <div className="flex items-center justify-between gap-2 mt-5">
@@ -84,6 +103,7 @@ const LoginForm = () => {
                 <Button
                     type="button"
                     className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
+                    onClick={ handleLogin }
                 >
                     Sign in
                 </Button>
@@ -93,10 +113,10 @@ const LoginForm = () => {
             </p>
             <div className="space-x-8 flex justify-center">
                 <span>
-                    <Image src={google} className="inline cursor-pointer" alt="Google icon"/>
+                    <Image src={ googleIcon } className="inline cursor-pointer" alt="Google icon"/>
                 </span>
                 <span>
-                    <Image src={facebook} className="cursor-pointer" alt="Facebook icon"/>
+                    <Image src={ facebookIcon } className="cursor-pointer" alt="Facebook icon"/>
                 </span>
             </div>
         </form>

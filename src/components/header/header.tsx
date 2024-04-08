@@ -1,11 +1,8 @@
 'use client'
 import {useEffect, useState} from "react";
-import logo from '@/assets/images/icon/logo.svg';
-import hamburger from '@/assets/images/icon/hamburger.svg';
-import github from '@/assets/images/icon/github.svg';
-import night from '@/assets/images/icon/night.svg';
-import light from '@/assets/images/icon/light.svg';
-import twitter from '@/assets/images/icon/twitter.svg';
+import {
+    logoIcon, hamburgerIcon, githubIcon, nightIcon, lightIcon, twitterIcon
+} from "@/assets/images/icon";
 import Image from "next/image";
 import {
     Sheet,
@@ -34,7 +31,7 @@ const Header = () => {
                 <div className="container flex h-14 max-w-screen-2xl items-center">
                     <div className="mr-4 hidden md:flex">
                         <a className="mr-6 flex items-center space-x-2" href="/">
-                            <Image src={ logo } width={20} height={20} alt='Logo'/>
+                            <Image src={ logoIcon } width={20} height={20} alt='Logo'/>
                             <span className="hidden font-bold sm:inline-block">Rentalhouse</span>
                         </a>
                         <nav className="flex items-center gap-4 text-sm lg:gap-6">
@@ -67,7 +64,7 @@ const Header = () => {
                     <Sheet key={SHEET_SIDES}>
                         <SheetTrigger asChild>
                             <Button className={clsx('outline-0', width >= MOBILE_WIDTH ? 'hidden' : '')} variant="outline">
-                                <Image src={ hamburger } width={20} height={20} alt='Hamburger menu'/>
+                                <Image src={ hamburgerIcon } width={20} height={20} alt='Hamburger menu'/>
                             </Button>
                         </SheetTrigger>
                         <MenuBar side={ SHEET_SIDES } />
@@ -86,12 +83,12 @@ const Header = () => {
                             <a target="_blank" rel="noreferrer" href="https://github.com/shadcn-ui/ui">
                             <div
                                 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 py-2 w-9 px-0">
-                                <Image src={ github } width={20} height={20} alt='Github'/>
+                                <Image src={ githubIcon } width={20} height={20} alt='Github'/>
                                 <span className="sr-only">GitHub</span></div>
                         </a><a target="_blank" rel="noreferrer" href="https://twitter.com/shadcn">
                             <div
                                 className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 py-2 w-9 px-0">
-                                <Image src={ twitter } width={20} height={20} alt='Twitter'/>
+                                <Image src={ twitterIcon } width={20} height={20} alt='Twitter'/>
                                 <span className="sr-only">Twitter</span></div>
                         </a>
                             <Button
