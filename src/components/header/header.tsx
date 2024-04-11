@@ -91,12 +91,12 @@ const Header = () => {
                                 <Image src={ twitterIcon } width={20} height={20} alt='Twitter'/>
                                 <span className="sr-only">Twitter</span></div>
                         </a>
-                            <Button
-                                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 py-2 w-9 px-0"
-                                type="button" id="radix-:Rtmu6la:" aria-haspopup="menu" aria-expanded="false"
-                                data-state="closed">
-                                <ModeToggle />
-                            </Button>
+                            {/*<Button*/}
+                            {/*    className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 py-2 w-9 px-0"*/}
+                            {/*    type="button" id="radix-:Rtmu6la:" aria-haspopup="menu" aria-expanded="false"*/}
+                            {/*    data-state="closed">*/}
+                            {/*    <ModeToggle />*/}
+                            {/*</Button>*/}
                         </nav>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 import axios from "axios";
 
 let API_URL: string | undefined = 'http://localhost:81/api/';
-console.log(API_URL);
 
 const LoginService = async ({email, password}: {email?: string, password?: string}) => {
     return await axios
@@ -10,9 +9,8 @@ const LoginService = async ({email, password}: {email?: string, password?: strin
             password
         })
         .then(response => {
-            console.log(response);
-            return response
-        })
+            return response;
+        });
 }
 
 const LogoutService = (token: string) => {

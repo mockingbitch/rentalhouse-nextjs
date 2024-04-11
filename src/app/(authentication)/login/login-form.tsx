@@ -19,7 +19,7 @@ const LoginForm = () => {
     const [data, setData] = useState<UserAuth>();
 
     console.log(auth);
-    
+
     const handleOnChange = (event: any) => {
         const targetName = event.target.name;
         const targetValue = event.target.value;
@@ -39,7 +39,7 @@ const LoginForm = () => {
     };
 
     return (
-        <form>
+        <form onSubmit={ event => event.preventDefault() }>
             <div className="mb-12">
                 <h3 className="text-3xl font-extrabold dark:text-black">Sign in</h3>
                 <p className="text-sm mt-4 dark:text-gray-700">
@@ -60,10 +60,15 @@ const LoginForm = () => {
                         type="text"
                         className="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none dark:text-black"
                         placeholder="Enter email"
-                        onChange={ e => handleOnChange(e) }
+                        onChange={e => handleOnChange(e)}
                     />
-                    <Image src={ emailIcon } className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
+                    <Image src={emailIcon} className="w-[18px] h-[18px] absolute right-2" alt="Email icon"/>
                 </div>
+                <span
+                    className="mt-2 text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block"
+                >
+                    Please enter a valid email address
+                </span>
             </div>
             <div className="mt-8">
                 <Label className="text-xs block mb-2 dark:text-black">Password</Label>
